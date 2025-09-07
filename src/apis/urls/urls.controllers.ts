@@ -37,7 +37,10 @@ export const redirect = async (req: Request, res: Response, next: NextFunction) 
 
 export const deleteUrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const url = await Url.findOne({ urlCode: req.params.code });
+        const url = await Url.findOne({ userId: (req as any).user.id });
+        if (!url) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
         if (url) {
             await Url.findByIdAndDelete(url._id);
             res.status(201).json("Deleted");
