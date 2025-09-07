@@ -3,7 +3,7 @@ import shortid from "shortid";
 import User from "../../models/User";
 import { NextFunction, Request, Response } from "express";
 
-const baseUrl = "http://localhost:8000/urls";
+const baseUrl = "http://localhost:8000/api/urls";
 
 export const shorten = async (req: Request, res: Response, next: NextFunction) => {
     // create url code
